@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import ConvexClientProvider from "@/providers/convex-client-provider";
 import { TooltipProvider } from "@workspace/ui/components/tooltip";
+import { Toaster } from "@workspace/ui/components/sonner";
 
 const helveticaNow = localFont({
   src: "../fonts/HelveticaNowVar.woff2",
@@ -41,9 +42,14 @@ export default function RootLayout({
       <body
         className={`font-helvetica-now ${ppEditorial.variable} ${helveticaNow.variable} ${ballet.variable} ${someTypeMono.variable} antialiased`}
       >
-        <ClerkProvider signInFallbackRedirectUrl="/" signUpFallbackRedirectUrl="/">
+        <ClerkProvider
+          signInFallbackRedirectUrl="/"
+          signUpFallbackRedirectUrl="/"
+        >
           <ConvexClientProvider>
-            <TooltipProvider>{children}</TooltipProvider>
+            <TooltipProvider>
+              {children} <Toaster />
+            </TooltipProvider>
           </ConvexClientProvider>
         </ClerkProvider>
       </body>

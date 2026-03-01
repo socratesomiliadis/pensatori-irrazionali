@@ -61,12 +61,12 @@ export function TranscriptSheet({
 }: TranscriptSheetProps) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="w-full gap-0 p-0 sm:max-w-3xl">
+      <SheetContent className="min-w-[30vw] gap-0 p-0">
         <SheetHeader className="border-b border-black/10 pb-4">
           <SheetTitle>Transcript</SheetTitle>
           <SheetDescription>
             {transcriptPanel
-              ? `${transcriptPanel.meetingTitle} • ${transcriptPanel.filename}`
+              ? `${transcriptPanel.meetingTitle}`
               : "Meeting transcript"}
           </SheetDescription>
           {transcriptPanel ? (
@@ -100,12 +100,19 @@ export function TranscriptSheet({
                   className="rounded-xl border border-black/10 bg-white px-3 py-2"
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <p className="text-sm font-semibold text-black">{utterance.speaker}</p>
+                    <p className="text-sm font-semibold text-black">
+                      {utterance.speaker}
+                    </p>
                     <p className="font-mono text-xs text-black/55">
-                      {formatTranscriptRange(utterance.startMs, utterance.endMs)}
+                      {formatTranscriptRange(
+                        utterance.startMs,
+                        utterance.endMs
+                      )}
                     </p>
                   </div>
-                  <p className="mt-1 text-sm leading-relaxed text-black/80">{utterance.text}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-black/80">
+                    {utterance.text}
+                  </p>
                 </article>
               ))}
             </div>
